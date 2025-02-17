@@ -1,0 +1,35 @@
+.signup-page{
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    font-family: "Roboto";
+}
+
+.sign-card{
+    width:400px; 
+    height: 500px;
+    border-radius: 9px;
+    border: none;
+    box-shadow: 1px 1px 1px 1px gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+}
+
+.signupBtn{
+    width: 100px;
+    height: 35px;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color:white; 
+    font-weight: 500;
+    background-color: rgba(96, 96, 224, 0.815);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px;
+    align-self: center;
+}

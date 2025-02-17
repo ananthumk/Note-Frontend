@@ -1,0 +1,119 @@
+.note-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
+    height: 90vh;
+    width: 100%;
+}
+
+.note-search-input{
+  width:200px; 
+  height: 30px;
+  padding:0px 0px 0px 5px;
+  padding-left: 10pxx;
+  font-family: "Roboto";
+  font-size: 18px;
+  font-weight: 700;
+  margin-left: 50px;
+}
+
+.create-note-container{
+  width:92%;
+  height: 280px;
+  border:0.7px solid black; 
+  align-self: center;
+  margin: 13px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.create-title{
+  font-family: "Roboto"; 
+  font-size: 20px;
+  font-weight: 500;
+  text-align: left;
+  margin-left: 30px;
+}
+
+.details-input{
+  margin-left: 20px;
+  width:80%;
+  height:30px;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: "Roboto";
+  padding-left: 14px;
+  padding-top: 5px;
+}
+
+.textarea{
+  margin-left: 30px;
+  padding-left: 10px;
+  padding-top: 5px;
+  width: 80%;
+  height: 40px;
+  margin-left: 20px;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: "Roboto";
+}
+
+.savebtn{
+  font-family: "Roboto";
+  width: 100px; 
+  height: 30px;
+  border-radius: 8px;
+  background-color: black;
+  font-size: 15px;
+  font-weight: 500;
+  color:white;
+  margin-left: 20px;
+}
+
+.noteCard{
+    align-self: center;
+    border: 1px solid whitesmoke; 
+    font-family: "Roboto";
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+   
+    width:92%; 
+    height: 150px;
+    max-height: 250px;
+    border-radius: 7px;
+    box-shadow: 1px 1px  black;
+    margin: 10px;
+}
+
+.ntd-section{
+  display: flex;
+  justify-content: space-between;
+}
+
+.note-details-container{
+    width:90%;
+    margin-left: 20px;
+    align-self: center;
+}
+
+.note-title{
+  font-size: 20px;
+  font-weight: 500;
+  color:black;
+  text-align: left;
+}
+
+.delete-icon{
+  align-self: center;
+}
+
+.note-descrption{
+   font-size: 17px;
+   font-weight: 500;
+   color: grey;
+   text-align: left;
+}
