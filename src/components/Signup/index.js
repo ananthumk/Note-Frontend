@@ -1,5 +1,5 @@
 import { Component } from 'react'
-
+import { Redirect } from 'react-router-dom'
 
 import "./index.css"
 
@@ -25,7 +25,9 @@ class Signup extends Component {
             body: JSON.stringify(userDetails)
         }
         const response = await fetch(url, options)
-      
+         if (response.ok){
+           <Redirect to="/login" />
+         }
 
     }
 
