@@ -1,4 +1,4 @@
-import {Component} from 'react'
+import { Component } from 'react'
 import Cookies from 'js-cookie'
 import { Redirect } from 'react-router-dom'
 import './index.css'
@@ -16,43 +16,38 @@ class Login extends Component {
         event.preventDefault()
         const { email, password } = this.state
         const userDetails = { email, password }
-    
-        try {
-            const response = await fetch('https://finalnotebackend-3.onrender.com/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify(userDetails)
-            });
-    
-           
-            if (!response.ok) {
-                
-                const errorData = await response.json();
-                console.error('Login failed:', errorData.message || 'Unknown error');
-                return; 
-            }
-    
-           
-            const data = await response.json();
-            const jwt = (data.token)
-    
-           
-            Cookies.set('jwtToken', jwt, { expires: 30 });
-            console.log('Login successful', data);
-            <Redirect to="/" />
-    
-    
-        } catch (error) {
-            console.error('Failed to fetch:', error);
+
+        const response = await fetch('https://finalnotebackend-3.onrender.com/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(userDetails)
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error('Login failed:', errorData.message || 'Unknown error');
+            return;
         }
+
+        const data = await response.json();
+        const jwt = (data.token)
+
+        Cookies.set('jwtToken', jwt, { expires: 30 });
+        console.log('Login successful', data);
+        this.setState({redirectToHome: true})
+
     }
-    
 
     render() {
         const {email, password} = this.state
+        const {redirectToHome} = this.state
+
+        if (redirectToHome) {
+            return <Redirect to="/" />;
+        }
         return (
             <div className="notes-app-container">
                 <div className="login-container">
@@ -76,13 +71,4 @@ class Login extends Component {
                                 onChange={this.handlePassword}
                             />
                         </div>
-                        <button type="submit" className="login-button">Login</button>
-                    </form>
-                    <p>Don't have an account? <a href="/signup">Signup</a></p>
-                </div>
-            </div>
-        )
-    }
-}
-
-export default Login
+                        <button type
