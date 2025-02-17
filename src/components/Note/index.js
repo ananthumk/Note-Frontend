@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { MdDelete } from "react-icons/md";
 import Cookies from 'js-cookie'
+import { Redirect } from 'react-router-dom'
 import Header from '../Header'
 import './index.css'
 
@@ -113,6 +114,11 @@ class Note extends Component {
             )
             : [];
         console.log(notes)
+
+        const jwtToken = Cookies.get('jwttoken') 
+        if (jwtToken === undefined) {
+          <Redirect to='/login' />
+        }
 
         return(
             <>
