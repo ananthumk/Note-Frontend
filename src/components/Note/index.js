@@ -46,17 +46,14 @@ class Note extends Component {
             body: JSON.stringify(newNote)
         }
 
-        try{
-            const response = await fetch( url, options )
-            if (response.ok){
-                console.log(response)
-                this.setState({showCreateNote: false}, this.getNoteDetails)
-            } else {
-                console.error("Error saving note:", response.status)
-            }
-        } catch(error){
-            console.error("Error saving note:", error)
+        const response = await fetch( url, options )
+        if (response.ok){
+            console.log(response)
+            this.setState({showCreateNote: false}, this.getNoteDetails)
+        } else {
+            console.error("Error saving note:", response.status)
         }
+
 
     }
 
@@ -75,22 +72,17 @@ class Note extends Component {
                 Authorization: `Bearer ${JwtToken}`
             }
         }
-        try {
-            const response = await fetch(url,options)
 
-            if (!response.ok) {
-                console.error("Failed to fetch notes:", response.status);
-                
-                
-            }
+        const response = await fetch(url,options)
 
-            const fetchData = await response.json()
-            console.log(fetchData)
-            this.setState({notes: fetchData})
-        } catch (error) {
-            console.error("Error fetching notes:", error);
-            this.setState({ notes: [] }); 
+        if (!response.ok) {
+            console.error("Failed to fetch notes:", response.status);
         }
+
+        const fetchData = await response.json()
+        console.log(fetchData)
+        this.setState({notes: fetchData})
+
     }
 
     renderCreateNote = () => {
@@ -115,9 +107,9 @@ class Note extends Component {
             : [];
         console.log(notes)
 
-        const jwtToken = Cookies.get('jwttoken') 
-        if (jwtToken === undefined) {
-          <Redirect to='/login' />
+        const jwtToken = Cookies.get('jwttoken')
+        if (!jwtToken) {
+            return <Redirect to='/login' />
         }
 
         return(
