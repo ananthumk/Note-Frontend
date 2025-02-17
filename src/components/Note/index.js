@@ -1,7 +1,6 @@
 import { Component } from 'react'
 import { MdDelete } from "react-icons/md";
 import Cookies from 'js-cookie'
-import { Redirect } from 'react-router-dom'
 import Header from '../Header'
 import './index.css'
 
@@ -46,14 +45,17 @@ class Note extends Component {
             body: JSON.stringify(newNote)
         }
 
-        const response = await fetch( url, options )
-        if (response.ok){
-            console.log(response)
-            this.setState({showCreateNote: false}, this.getNoteDetails)
-        } else {
-            console.error("Error saving note:", response.status)
+        try{
+            const response = await fetch( url, options )
+            if (response.ok){
+                console.log(response)
+                this.setState({showCreateNote: false}, this.getNoteDetails)
+            } else {
+                console.error("Error saving note:", response.status)
+            }
+        } catch(error){
+            console.error("Error saving note:", error)
         }
-
 
     }
 
@@ -72,17 +74,22 @@ class Note extends Component {
                 Authorization: `Bearer ${JwtToken}`
             }
         }
+        try {
+            const response = await fetch(url,options)
 
-        const response = await fetch(url,options)
+            if (!response.ok) {
+                console.error("Failed to fetch notes:", response.status);
+                
+                
+            }
 
-        if (!response.ok) {
-            console.error("Failed to fetch notes:", response.status);
+            const fetchData = await response.json()
+            console.log(fetchData)
+            this.setState({notes: fetchData})
+        } catch (error) {
+            console.error("Error fetching notes:", error);
+            this.setState({ notes: [] }); 
         }
-
-        const fetchData = await response.json()
-        console.log(fetchData)
-        this.setState({notes: fetchData})
-
     }
 
     renderCreateNote = () => {
@@ -106,11 +113,6 @@ class Note extends Component {
             )
             : [];
         console.log(notes)
-
-        const jwtToken = Cookies.get('jwttoken')
-        if (!jwtToken) {
-            return <Redirect to='/login' />
-        }
 
         return(
             <>
