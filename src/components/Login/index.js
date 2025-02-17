@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
+import { Redirect } from 'react-router-dom'
 import './index.css'
 
 class Login extends Component {
@@ -41,6 +42,7 @@ class Login extends Component {
            
             Cookies.set('jwtToken', jwt, { expires: 30 });
             console.log('Login successful', data);
+            <Redirect to="/" />
     
     
         } catch (error) {
